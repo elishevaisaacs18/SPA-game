@@ -1,3 +1,4 @@
+let clickCount = 0; 
 document.addEventListener('DOMContentLoaded', () => {
 
     // copy the HTML from the 'sign-in-template' element
@@ -128,3 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
 //     setTimeout(deleteMassage, time);
 // }
 
+
+
+
+document.getElementById("counter").addEventListener("click", () =>{
+    clickCount++;
+    localStorage.setItem("counter",JSON.stringify(clickCount))
+    document.getElementById("count-display").textContent = `score: ${clickCount}`;
+});
