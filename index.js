@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("sign-up-btn").addEventListener('click', () => {
         document.getElementById('div-hold').innerHTML = '';
     });
+    
 });
 
 
