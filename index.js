@@ -1,24 +1,41 @@
-let clickCount = 0; 
+let clickCount = 0;
+let currPage;
 document.addEventListener('DOMContentLoaded', () => {
+    changePage('sign-in-template');
+    listenToActions();
+});
+function listenToActions() {
+    if (currPage === 'sign-in-template') {
+        document.getElementById("redirect-to-sign-up-btn").addEventListener('click', () => {
+            changePage('sign-up-template');
+        });
+        document.getElementById("sign-in-btn").addEventListener('click', () => {
+            changePage('best-game-ever');
+            document.getElementById("counter").addEventListener("click", () => {
+                clickCount++;
+                localStorage.setItem("counter", JSON.stringify(clickCount))
+                document.getElementById("count-display").textContent = `score: ${clickCount}`;
+            });
+        });
+    } else if (currPage === 'sign-up-template') {
+        document.getElementById("sign-up-btn").addEventListener('click', () => {
+            changePage('sign-in-template');
+        });
+    }
+}
 
-    // copy the HTML from the 'sign-in-template' element
-    // change its ID so we can target the copy
-    // add the copy to the DOM
-
-    // on a click to the 'sign-up-btn', delete the copy from the DOM
-    // and append a copy of the 'sign-up-template'
-
-
-
-
-    let content = document.getElementById('sign-in-template').content;
+function changePage(newPageTemplateId) {
+    document.getElementById('div-hold').innerHTML = '';
+    let content = document.getElementById(newPageTemplateId).content;
     let contentCopy = content.cloneNode(true);
     document.getElementById('div-hold').appendChild(contentCopy);
-    document.getElementById("sign-up-btn").addEventListener('click', () => {
-        document.getElementById('div-hold').innerHTML = '';
-    });
-    
-});
+    currPage = newPageTemplateId;
+    listenToActions();
+}
+
+
+
+
 
 
 // function User(email, userName, password) {
@@ -131,9 +148,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-document.getElementById("counter").addEventListener("click", () =>{
-    clickCount++;
-    localStorage.setItem("counter",JSON.stringify(clickCount))
-    document.getElementById("count-display").textContent = `score: ${clickCount}`;
-});
