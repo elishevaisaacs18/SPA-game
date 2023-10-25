@@ -1,3 +1,4 @@
+let clickCount = 0; 
 document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(document.getElementById('sign-in-template').content);
 });
@@ -63,18 +64,6 @@ document.getElementById('sign-in-btn').addEventListener('click', accessAccount)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 //! i would like to go throgh this function with you
 function accessAccount() {
     const userNameInput = document.getElementById('uname').value;
@@ -110,3 +99,11 @@ const showMistakeMessage = (message, time) => {
     setTimeout(deleteMassage, time);
 }
 
+
+
+
+document.getElementById("counter").addEventListener("click", () =>{
+    clickCount++;
+    localStorage.setItem("counter",JSON.stringify(clickCount))
+    document.getElementById("count-display").textContent = `score: ${clickCount}`;
+});
